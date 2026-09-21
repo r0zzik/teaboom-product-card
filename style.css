@@ -1,0 +1,467 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* НЕ ОБЯЗАТЕЛЬНОЕ БОДИ */
+
+body {
+    background-color: #fbfbfb;
+    padding-top: 150px;
+}
+
+/* КАРТОЧКА ГРИД */
+
+.product {
+    font-family: "Open Sans", sans-serif;
+    line-height: 24px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: normal;
+    color: #444;
+    position: relative;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 40px;
+}
+
+.product > * {
+    min-width: 0;
+} 
+
+/* ССЫЛКИ НАВИГАЦИИ */
+
+.product__nav {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-wrap: wrap;
+    background-color: rgba(253, 125, 20, 0.2);
+    padding: 15px;
+}
+
+.product__nav-link {
+    text-decoration: none;
+    color: #444;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: normal;
+    white-space: nowrap;
+    position: relative;
+    margin-right: 25px;
+}
+
+.product__nav-link::after {
+    content: '>>';
+    position: absolute;
+    right: -20px;
+    top: 0;
+}
+
+.product__nav-link:last-child::after {
+    content: none;
+}
+
+.product__nav-link:last-child {
+    font-weight: bold;
+}
+
+.product__nav-link:hover {
+    color: #dc3545;
+}
+
+/* ПЕРВЫЙ СТОЛБЕЦ */
+
+/* Основная картинка чая */
+
+.product__img {
+    position: relative;
+    width: 100%;
+    display: flex;
+}
+
+.product__zoom {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s, color 0,2s;
+    cursor: pointer;
+}
+
+.product__zoom:hover {
+    background: black;
+    color: #fff;
+}
+
+.product__img-file {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* Просмотр картинки */
+
+.product__modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+}
+
+.product__modal-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.product__modal--open {
+    display: flex;
+}
+
+.product__modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s, color 0,2s;
+    cursor: pointer;
+}
+
+.product__modal-close:hover {
+    background: black;
+    color: #fff;
+}
+
+.product__modal-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* ВТОРОЙ СТОЛБЕЦ */
+
+.product__info {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    height: 100%;
+    gap: 40px;
+    flex-shrink: 0;
+}
+
+/* Кнопки: комментарий, избранное и корзина */
+
+.product__actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+/* Кнопка комментарий */
+
+.product__comment {
+    background: rgba(134, 142, 150, 0.2);
+    border: 1px solid #868e96;
+    color: #444;
+    border-radius: 20px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: color 0.2s;
+    gap: 10px;
+    padding-left: 20px;
+    padding-right: 15px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.product__comment--active {
+    background: rgba(134, 142, 150, 0.5);
+}
+
+.product__comment--active svg{
+    fill: #868e96;
+}
+
+.product__comment:hover svg {
+    fill: #868e96;
+}
+
+/* Кнопка в избранное */
+
+.product__favorite {
+    background: rgba(134, 142, 150, 0.2);
+    border: 1px solid #868e96;
+    color: #444;
+    border-radius: 20px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: color 0.2s;
+    gap: 10px;
+    padding-left: 20px;
+    padding-right: 15px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.product__favorite:hover svg {
+    fill: #dc3545;
+}
+
+.product__favorite--active {
+    background-color: #ffc107;
+}
+
+.product__favorite--active svg {
+    fill: #dc3545;
+}
+
+/* Кнопка корзина */
+
+.product__cart {
+    background: rgba(134, 142, 150, 0.2);
+    border: 1px solid #868e96;
+    color: #444;
+    border-radius: 20px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: color 0.2s;
+    gap: 10px;
+    padding-left: 20px;
+    padding-right: 15px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.product__cart--active {
+    background-color: #fd7e14;
+}
+
+.product__cart--active svg {
+    fill: #868e96;
+}
+
+.product__cart:hover svg{
+    fill: #868e96;
+}
+
+
+/* Категория и название */
+
+.product__category {
+    color: #444;
+    font-size: 16px;
+    line-height: 16px;
+    text-decoration: none;
+    display: block;
+    margin: 0 0 15px 0;
+    cursor: pointer;
+}
+
+.product__category:hover {
+    color: #dc3545;
+}
+
+/* Кнопочки фасовки */
+
+.product__packages {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+.product__package {
+    font-family: "Open Sans", sans-serif;
+    line-height: 24px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: normal;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    border: 1px solid #868e96;
+    border-radius: 20px;
+    text-wrap: nowrap;
+}
+
+.product__package:hover {
+    background-color: #20c997;
+}
+
+.product__package--active {
+    background-color: #20c997;
+    font-weight: bold;
+}
+
+/* Цены и артикул */
+
+.product__prices {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.product__price {
+    text-align: end;
+}
+
+.product__price-current {
+    color: #dc3545;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.product__price-old {
+    color: #868e96;
+    font-size: 24px;
+    text-decoration: line-through;
+    font-weight: bold;
+}
+
+/* Короткое описание */
+
+.product__info-desc {
+    font-size: 24px;
+    margin-top: auto;
+}
+
+
+/* ДЛИННОЕ ОПИСАНИЕ */
+
+.product__desc {
+    grid-column: 1 / -1;
+    text-align: start;
+    background-color: rgba(253, 125, 20, 0.2);
+    padding: 20px 20px;
+    font-size: 16px;
+}
+
+.product__desc-text {
+    padding-left: 50px;
+    padding: 20px;
+}
+
+.product__desc-text span {
+    font-size: 30px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.product__desc-text li {
+    margin-left: 50px;
+}
+
+
+/* АДАПТИВ */
+
+/* Планшет */
+
+@media (max-width: 768px) {
+    .product {
+        grid-template-columns: 1fr;
+    }
+
+    .product__nav {
+        order: 1;
+    }
+
+    .product__info {
+        order: 2;
+    }
+
+    .product__img {
+        order: 3;
+    }
+
+    .product__desc {
+        order: 4;
+    }
+
+    .product__title {
+        font-size: 40px;
+    }
+
+    .product__package {
+        font-size: 30px;
+        line-height: 30px;
+        padding: 20px 30px;
+    }
+}
+
+/* Мобилки */
+
+@media (max-width: 425px) {
+    .product__title {
+        font-size: 40px;
+    }
+
+    .product__package {
+        font-size: 20px;
+        line-height: 20px;
+        padding: 10px 12px;
+    }
+
+    .product__comment-text,
+    .product__favorite-text {
+        display: none;
+    }
+
+    .product__comment,
+    .product__favorite {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 375px) {
+    .product__title {
+        font-size: 38px;
+    }
+
+    .product__package {
+        font-size: 16px;
+        line-height: 16px;
+        padding: 5px 10px;
+    }
+}
