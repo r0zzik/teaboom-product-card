@@ -19,6 +19,10 @@
 - CSS (Flexbox, Grid)
 - JavaScript (без фреймворков)
 
+## Ссылка на репозиторий
+
+https://github.com/r0zzik/teaboom-product-card.git
+
 ## Как запустить
 
 Открыть index.html в браузере или запустить через Live Server.
